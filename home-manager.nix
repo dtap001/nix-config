@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  home-manager.users.moqs = { pkgs, ... }: {
+  home-manager.users.moqs = { ... }: {
   home.stateVersion = "23.05";  
-  home.packages = [ pkgs.htop pkgs.git pkgs.kitty];
+  home.packages = [ pkgs.htop pkgs.git pkgs.kitty pkgs.keepassxc ];
 
    programs.git = {
     enable = true;
@@ -16,6 +16,19 @@
     historyFile = "~/zsh/history";
   };
 
+  systemd.user.services.keepassxc = {
+    Unit = {
+      Description = "KeepassXC startup";
+      PartOf = [ "river-session.target" ];
+      Wants = [ "waybar.service" ];
+      After = [ "river-session.target" "waybar.service" ];
+    };
+    Service = {
+      ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
+      Restart = "always";
+    };
+    Install.WantedBy = [ "river-session.target" ];
+  };
 
   programs.zsh = {
     enable = true;
@@ -58,6 +71,9 @@
     keybindings = {
       "ctrl+t" = "new_window";
       "ctrl+w" = "close_window";
+    };
+    environment = {
+      "KITTY_ENABLE_WAYLAND" = "1";
     };
   };
 

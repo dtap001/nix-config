@@ -67,7 +67,12 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-    pkgs.gnome3.gnome-tweaks
+    gnome3.gnome-tweaks
+    gnomeExtensions.clipboard-indicator
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.system-monitor
+    gnome3.dconf-editor
+
   ];
   programs.zsh.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
