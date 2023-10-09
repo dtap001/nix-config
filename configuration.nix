@@ -19,7 +19,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "hades"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -74,15 +74,7 @@
     gnome3.dconf-editor
 
   ];
-  programs.zsh.enable = true;
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-  
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -101,5 +93,15 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
- 
+  nixpkgs.config.packageOverrides = pkgs: {
+    # Keepass plugin Overrides
+    keepass = pkgs.keepass.override {
+      # Just leave your plugin-packages here
+      plugins = [
+        pkgs.keepass-keepassrpc
+        pkgs.keepass-keepasshttp
+        pkgs.keepass-keeagent
+      ];
+    };
+  };
 }

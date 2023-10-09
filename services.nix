@@ -11,6 +11,9 @@
     layout = "hu";
     xkbVariant = "102_qwertz_comma_nodead";
   };
+  services.xrdp.enable = true;
+  services.xrdp.defaultWindowManager = "gnome-wayland";
+  services.xrdp.openFirewall = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
