@@ -3,9 +3,10 @@
 {
   home-manager.users.moqs = { ... }: {
   home.stateVersion = "23.05";  
-  home.packages = [ pkgs.htop pkgs.git pkgs.kitty pkgs.keepassxc ];
+  # Packages that should be installed to the user profile.
+  home.packages = [ pkgs.htop pkgs.git pkgs.kitty pkgs.keepassxc pkgs.spotify ];
 
-   programs.git = {
+  programs.git = {
     enable = true;
     userName  = "John Doe";
     userEmail = "johndoe@example.com";
@@ -50,21 +51,6 @@
     enableZshIntegration = true;
   };
 
-  # programs.editorconfig  = {
-  #   enable = true;
-  #   settings = {
-  #       "*" = {
-  #       charset = "utf-8";
-  #       end_of_line = "lf";
-  #       trim_trailing_whitespace = true;
-  #       insert_final_newline = true;
-  #       max_line_width = 78;
-  #       indent_style = "space";
-  #       indent_size = 2;
-  #     };
-  #   };
-  # };
-
   programs.kitty = {
     enable = true;
     theme = "Space Gray Eighties";
@@ -76,7 +62,5 @@
       "KITTY_ENABLE_WAYLAND" = "1";
     };
   };
-
-
   };
 }
