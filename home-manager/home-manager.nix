@@ -3,8 +3,9 @@
 {
   home-manager.users.moqs = { ... }: {
   home.stateVersion = "23.05";  
+  nixpkgs.config.allowUnfree = true;
   # Packages that should be installed to the user profile.
-  home.packages = [ pkgs.htop pkgs.git pkgs.kitty pkgs.keepassxc pkgs.spotify ];
+  home.packages = [ pkgs.htop pkgs.git pkgs.kitty pkgs.spotify ];
 
   programs.git = {
     enable = true;
@@ -17,19 +18,43 @@
     historyFile = "~/zsh/history";
   };
 
-  systemd.user.services.keepassxc = {
-    Unit = {
-      Description = "KeepassXC startup";
-      PartOf = [ "river-session.target" ];
-      Wants = [ "waybar.service" ];
-      After = [ "river-session.target" "waybar.service" ];
-    };
-    Service = {
-      ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
-      Restart = "always";
-    };
-    Install.WantedBy = [ "river-session.target" ];
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+      yzhang.markdown-all-in-one
+      jnoortheen.nix-ide
+      timonwong.shellcheck
+      jebbs.plantuml
+      dbaeumer.vscode-eslint
+      #rwl.angular-console
+    ];
+    keybindings = [
+      {
+      key = "ctrl+d";
+      command = "editor.action.deleteLines";
+      }
+    ];
   };
+
+    #dconf write /org/gnome/desktop/sound/input-feedback-sound "false"
+  dconf.settings = {
+    "org/gnome/desktop/sound".input-feedback-sound = false;
+    "org/gnome/desktop/sound".event-sounds = false;
+
+  };
+  # systemd.user.services.keepassxc = {
+  #   Unit = {
+  #     Description = "KeepassXC startup";
+  #     PartOf = [ "river-session.target" ];
+  #     Wants = [ "waybar.service" ];
+  #     After = [ "river-session.target" "waybar.service" ];
+  #   };
+  #   Service = {
+  #     ExecStart = "${pkgs.keepassxc}/bin/keepassxc";
+  #     Restart = "always";
+  #   };
+  #   Install.WantedBy = [ "river-session.target" ];
+  # };
 
   programs.zsh = {
     enable = true;

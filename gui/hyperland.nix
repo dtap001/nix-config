@@ -1,8 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:  
 {
-# Enabling hyprlnd on NixOS
-programs.hyprland.enable = true;
+
 programs.hyprland = {
+  enable= true;
   nvidiaPatches = true;
   xwayland.enable = true;
 };
@@ -28,8 +28,7 @@ hardware = {
 #     mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
 #   })
 # )
-# XDG portal
+# XDG portal sharing clipboard drag and drop etc
 xdg.portal.enable = true;
 xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
 }

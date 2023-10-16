@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       <home-manager/nixos>
       ./home-manager/home-manager.nix
+      ./battery.nix
       ./hardware-configuration.nix
       ./users/moqs.nix
       ./services.nix
@@ -41,7 +42,6 @@
     LC_TELEPHONE = "hu_HU.UTF-8";
     LC_TIME = "hu_HU.UTF-8";
   };
- 
   # Configure console keymap
   console.keyMap = "hu101";
 

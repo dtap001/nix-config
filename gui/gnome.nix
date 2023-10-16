@@ -5,10 +5,17 @@
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
+    gnome.gnome-session
+    
     gnome3.gnome-tweaks
-    gnomeExtensions.clipboard-indicator
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.system-monitor
     gnome3.dconf-editor
+    gnomeExtensions.pano
+    gnomeExtensions.tiling-assistant
+    gnomeExtensions.dash-to-panel
+    gnomeExtensions.places-status-indicator
+    gnomeExtensions.system-monitor
+    gnomeExtensions.audio-output-switcher
   ];
+
+
 }
