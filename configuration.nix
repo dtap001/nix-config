@@ -20,6 +20,7 @@
       ./network.nix
       ./programs/keepass.nix
       ./programs/xrdp.nix
+      ./virtualisation.nix
       #./gui/hyperland.nix
     ];
 

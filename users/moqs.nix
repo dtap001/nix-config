@@ -3,7 +3,7 @@
   users.users.moqs = {
     isNormalUser = true;
     description = "moqs";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "libvrtd"];
     packages = with pkgs; [
       firefox
       thunderbird
