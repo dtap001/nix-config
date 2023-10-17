@@ -20,6 +20,16 @@
 
   programs.vscode = {
     enable = true;
+    userSettings = {
+      "window.titleBarStyle" = "custom";
+      "telemetry.enableTelemetry" = "false";
+      "telemetry.telemetryLevel" = "off";
+      "explorer.confirmDelete" = "false";
+      "git.autofetch" = "true";
+      "git.openRepositoryInParentFolders" = "never";
+      "explorer.confirmDragAndDrop" = "false";
+    };
+  
     extensions = with pkgs.vscode-extensions; [
       yzhang.markdown-all-in-one
       jnoortheen.nix-ide
@@ -40,7 +50,8 @@
   dconf.settings = {
     "org/gnome/desktop/sound".input-feedback-sound = false;
     "org/gnome/desktop/sound".event-sounds = false;
-
+    "org.gnome.desktop.wm.preferences".audible-bell = false;
+    "org.gnome.desktop.peripherals.touchpad".tap-to-click = true;
   };
   # systemd.user.services.keepassxc = {
   #   Unit = {
@@ -84,7 +95,13 @@
       "ctrl+w" = "close_window";
     };
     environment = {
-      "KITTY_ENABLE_WAYLAND" = "1";
+      "KITTY_ENABLE_WAYLAND" = "0";
+      "KITTY_DISABLE_WAYLAND" = "1";
+    };
+    settings = {
+      scrollback_lines = 99999;
+      enable_audio_bell = false;
+      update_check_interval = 0;
     };
   };
   };

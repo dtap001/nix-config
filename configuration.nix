@@ -49,7 +49,9 @@
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-
+  environment.interactiveShellInit = ''
+    alias ll="ls -lah"
+  '';
   virtualisation.docker.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

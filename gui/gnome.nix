@@ -16,6 +16,4 @@
     gnomeExtensions.system-monitor
     gnomeExtensions.audio-output-switcher
   ];
-
-
 }
