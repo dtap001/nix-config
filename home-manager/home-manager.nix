@@ -6,11 +6,25 @@
   nixpkgs.config.allowUnfree = true;
   # Packages that should be installed to the user profile.
   home.packages = [ pkgs.htop pkgs.git pkgs.kitty pkgs.spotify ];
+  home.file =
+  let autostartPrograms = [ pkgs.kitty pkgs.telegram-desktop pkgs.spotify pkgs.keepass pkgs.vscode pkgs.firefox]; in
+  builtins.listToAttrs (map
+    (pkg:
+      {
+        name = ".config/autostart/" + pkg.pname + ".desktop";
+        value =
+          if pkg ? desktopItem then {
+            text = pkg.desktopItem.text;
+          } else {
+            source = (pkg + "/share/applications/" + pkg.pname + ".desktop");
+          };
+      })
+    autostartPrograms);
 
   programs.git = {
     enable = true;
-    userName  = "John Doe";
-    userEmail = "johndoe@example.com";
+    userName  = "dtap";
+    userEmail = "tapai.david.t@gmail.com";
   };
 
   programs.bash = {
@@ -52,6 +66,7 @@
     "org/gnome/desktop/sound".event-sounds = false;
     "org.gnome.desktop.wm.preferences".audible-bell = false;
     "org.gnome.desktop.peripherals.touchpad".tap-to-click = true;
+    "org.gnome.shell.extensions.tiling-assistant".activate-layout0 = "<Super>w";
   };
   # systemd.user.services.keepassxc = {
   #   Unit = {
